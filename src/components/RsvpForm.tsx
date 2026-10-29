@@ -3,6 +3,7 @@
 import { useActionState, useState } from "react";
 import { submitPreferences, submitRsvp, type FormState } from "@/app/actions";
 import { buttonClass } from "@/components/designs/NextButton";
+import { wedding } from "@/data/wedding";
 
 const labelClass = "text-[11px] uppercase tracking-[0.3em] text-sage-dark";
 const inputClass =
@@ -16,11 +17,28 @@ function ErrorText({ text }: { text?: string }) {
   ) : null;
 }
 
-function Thanks() {
+function Thanks({ withChat = false }: { withChat?: boolean }) {
   return (
-    <p className="font-script text-3xl text-sage-dark">
-      Спасибо! Мы получили ваш ответ
-    </p>
+    <div className="flex flex-col items-center gap-5">
+      <p className="font-script text-3xl text-sage-dark">
+        Спасибо! Мы получили ваш ответ
+      </p>
+      {withChat && (
+        <>
+          <p className="max-w-[17rem] text-sm leading-relaxed text-ink/85">
+            Все новости о празднике будут в нашем общем чате — присоединяйтесь!
+          </p>
+          <a
+            href={wedding.chatUrl}
+            target="_blank"
+            rel="noreferrer"
+            className={buttonClass}
+          >
+            Чат в Telegram ↗
+          </a>
+        </>
+      )}
+    </div>
   );
 }
 
@@ -89,7 +107,7 @@ function PreferencesForm({ token }: { token: string }) {
   const [selected, setSelected] = useState<string[]>([]);
   const [other, setOther] = useState(false);
 
-  if (state.success) return <Thanks />;
+  if (state.success) return <Thanks withChat />;
 
   const toggle = (d: string) =>
     setSelected((s) => (s.includes(d) ? s.filter((x) => x !== d) : [...s, d]));

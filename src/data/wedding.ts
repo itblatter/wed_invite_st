@@ -13,8 +13,9 @@ export const wedding = {
     address: "г. Екатеринбург, Рощинская, 64Б",
     mapUrl: "https://yandex.ru/maps/-/CXbaYH-R",
   },
+  chatUrl: "https://t.me/+Buw4ZwKfi7E0ZDNi",
   dressCode: {
-    title: "Не спортивный, но и не строгий стиль!",
+    title: "Не спортивный, но и не строгий стиль! По возможности, опрятный 😄",
     note: "Доверимся вашему выбору, пусть вам будет комфортно в этот вечер ❤️",
   },
 };
