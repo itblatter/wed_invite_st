@@ -59,9 +59,15 @@ export async function submitPreferences(
 
   const drinks = formData.getAll("drinks").map(String);
   const drinksOther = String(formData.get("drinksOther") ?? "").trim();
+  const juiceFlavor = String(formData.get("juiceFlavor") ?? "").trim();
   const allergies = String(formData.get("allergies") ?? "").trim();
 
-  const drinkList = [...drinks.filter((d) => d !== "other"), drinksOther].filter(Boolean);
+  const drinkList = [
+    ...drinks
+      .filter((d) => d !== "other")
+      .map((d) => (d === "Сок" && juiceFlavor ? `Сок (${juiceFlavor})` : d)),
+    drinksOther,
+  ].filter(Boolean);
   if (drinkList.length === 0) {
     return { error: "Выберите хотя бы один вариант напитков." };
   }

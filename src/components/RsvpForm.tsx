@@ -139,6 +139,14 @@ function PreferencesForm({ token }: { token: string }) {
             Свой вариант
           </label>
         </div>
+        {selected.includes("Сок") && (
+          <input
+            name="juiceFlavor"
+            required
+            placeholder="Какой сок предпочитаете?"
+            className={inputClass}
+          />
+        )}
         {other && (
           <input
             name="drinksOther"
