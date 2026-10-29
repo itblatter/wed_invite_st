@@ -1,20 +1,22 @@
 import Link from "next/link";
+import { Card } from "@/components/designs/Card";
+import { buttonClass } from "@/components/designs/NextButton";
 
 export default function NotFound() {
   return (
-    <main className="flex flex-1 flex-col items-center justify-center gap-6 px-6 text-center">
-      <h1 className="font-script text-4xl text-stone-800">
-        Приглашение не найдено
-      </h1>
-      <p className="max-w-md text-stone-700">
-        Похоже, ссылка указана неверно. Вернитесь на главную и введите своё имя.
-      </p>
-      <Link
-        href="/"
-        className="rounded-md bg-stone-800 px-6 py-3 text-stone-50 transition hover:bg-stone-700"
-      >
-        На главную
-      </Link>
-    </main>
+    <Card>
+      <div className="flex flex-col items-center gap-6">
+        <h1 className="font-script text-4xl text-sage-dark">
+          Приглашение не найдено
+        </h1>
+        <p className="max-w-[16rem] text-sm leading-relaxed text-ink/85">
+          Похоже, ссылка указана неверно. Вернитесь назад и введите имена вашей
+          пары.
+        </p>
+        <Link href="/invitepage" className={buttonClass}>
+          Ввести имена
+        </Link>
+      </div>
+    </Card>
   );
 }

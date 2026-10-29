@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Marck_Script } from "next/font/google";
+import { Lora, Marck_Script } from "next/font/google";
 import "./globals.css";
 
-const serif = Cormorant_Garamond({
+const serif = Lora({
   variable: "--font-serif",
   subsets: ["latin", "cyrillic"],
   weight: ["400", "500", "600"],

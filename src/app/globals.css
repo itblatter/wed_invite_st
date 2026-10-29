@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f3ee;
-  --foreground: #2b2622;
+  --background: #f4f2ea;
+  --foreground: #2f3a32;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-cream: #faf5ec;
-  --color-ink: #3a2f28;
-  --color-gold: #b89a5e;
-  --color-terracotta: #b4745a;
-  --color-olive-700: #6f7557;
-  --color-olive-800: #4f553c;
+  --color-cream: #f4f2ea;
+  --color-paper: #fbfaf6;
+  --color-ink: #2f3a32;
+  --color-sage: #6f8a72;
+  --color-sage-dark: #4e6652;
+  --color-sage-light: #a9bfab;
   --font-sans: var(--font-serif);
   --font-serif: var(--font-serif);
   --font-script: var(--font-script);
@@ -25,41 +25,21 @@ body {
   font-family: var(--font-serif), Georgia, serif;
 }
 
-/* Покачивание зелени */
+/* Лёгкое покачивание узора */
 @keyframes sway {
-  0%, 100% { transform: rotate(-1.2deg); }
-  50% { transform: rotate(1.2deg); }
-}
-@keyframes leaf-sway {
-  0%, 100% { rotate: -3deg; }
-  50% { rotate: 3deg; }
-}
-@keyframes twinkle {
-  0%, 100% { opacity: 0.35; }
-  50% { opacity: 0.95; }
+  0%, 100% { transform: rotate(-0.6deg) scale(1.02); }
+  50% { transform: rotate(0.6deg) scale(1.02); }
 }
 .sway {
-  transform-origin: 50% 0;
-  animation: sway 7s ease-in-out infinite;
-}
-.leaf {
-  transform-box: fill-box;
-  transform-origin: 50% 0;
-  animation: leaf-sway 4.5s ease-in-out infinite;
-}
-.twinkle {
-  animation: twinkle 3.5s ease-in-out infinite;
+  transform-origin: 50% 50%;
+  animation: sway 14s ease-in-out infinite;
 }
 @media (prefers-reduced-motion: reduce) {
-  .sway, .leaf, .twinkle { animation: none; }
+  .sway { animation: none; }
 }
 
-/* Тёплая бумага: мягкие цветовые пятна + лёгкий шум */
+/* Кремовая бумага с шумом */
 .paper {
-  background-color: #efe6d8;
-  background-image:
-    radial-gradient(ellipse at 15% 20%, rgba(180, 116, 90, 0.18), transparent 55%),
-    radial-gradient(ellipse at 85% 80%, rgba(111, 117, 87, 0.22), transparent 55%),
-    radial-gradient(ellipse at 70% 15%, rgba(184, 154, 94, 0.16), transparent 50%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-color: #f4f2ea;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }

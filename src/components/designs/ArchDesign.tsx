@@ -1,40 +1,31 @@
 import { wedding } from "@/data/wedding";
 import { Card } from "./Card";
+import { CoupleNames } from "./CoupleNames";
 import { NextButton } from "./NextButton";
 
 export function ArchDesign() {
   return (
     <Card>
-      <div className="relative flex flex-col items-center gap-10">
-        <p className="text-[11px] uppercase tracking-[0.4em] text-terracotta">
-          {wedding.city}
-        </p>
+      <div className="flex flex-col items-center gap-8">
+        <CoupleNames />
 
-        <div className="relative flex flex-col items-center gap-8 py-4 sm:gap-10">
-          <span
-            aria-hidden
-            className="pointer-events-none absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2 select-none font-serif text-[11rem] italic leading-none text-[#8a7a68] opacity-20 sm:text-[13rem]"
-          >
-            &amp;
-          </span>
-          <h1 className="relative z-10 text-4xl uppercase tracking-[0.2em] text-ink sm:text-5xl">
-            {wedding.couple.second}
-          </h1>
-          <h1 className="relative z-10 text-4xl uppercase tracking-[0.2em] text-ink sm:text-5xl">
-            {wedding.couple.first}
-          </h1>
+        <span className="h-px w-16 bg-sage" />
+
+        <div className="flex flex-col items-center gap-2">
+          <p className="text-[11px] uppercase tracking-[0.35em] text-sage-dark">
+            {wedding.city}
+          </p>
+          <p className="text-2xl tracking-[0.25em] text-ink">
+            {wedding.dateParts.join(" / ")}
+          </p>
         </div>
 
-        <p className="text-base tracking-[0.3em] text-ink/80 sm:text-lg">
-          {wedding.dateParts.join(" / ")}
+        <p className="max-w-[16rem] text-pretty text-sm leading-relaxed text-ink/80">
+          Приглашаем вас разделить с нами этот день
         </p>
+
+        <NextButton href="/invitepage" />
       </div>
-
-      <p className="absolute inset-x-14 bottom-20 text-[11px] uppercase leading-relaxed tracking-[0.3em] text-terracotta sm:bottom-24 sm:inset-x-20">
-        Приглашаем вас разделить с нами этот день
-      </p>
-
-      <NextButton href="/invitepage" />
     </Card>
   );
 }
