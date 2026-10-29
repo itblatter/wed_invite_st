@@ -6,6 +6,8 @@ export type Guest = {
   greeting: string;
   text: string;
   facts: string;
+  /** false — гость не сможет приехать, блок подтверждения не показываем */
+  rsvp?: boolean;
 };
 
 export const guests: Guest[] = guestsData;

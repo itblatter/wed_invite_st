@@ -89,23 +89,27 @@ export default async function InvitePage({
         </div>
       </Medallion>
 
-      <Medallion>
-        <div className="flex w-full flex-col items-center gap-6">
-          <div className="flex flex-col items-center gap-2">
-            <p className={label}>Подтверждение</p>
-            <p className="max-w-[18rem] text-sm leading-relaxed text-ink/85">
-              Дорогие {guest.names.join(" и ")}, пожалуйста, ответьте, сможете
-              ли вы быть с нами, чтобы мы могли всё подготовить.
-            </p>
+      {guest.rsvp !== false && (
+        <Medallion>
+          <div className="flex w-full flex-col items-center gap-6">
+            <div className="flex flex-col items-center gap-2">
+              <p className={label}>Подтверждение</p>
+              <p className="max-w-[18rem] text-sm leading-relaxed text-ink/85">
+                {greetingWord} {guest.names.join(" и ")}, пожалуйста, ответьте,
+                сможете ли вы быть с нами, чтобы мы могли всё подготовить.
+              </p>
+            </div>
+            <RsvpForm token={guest.token} />
           </div>
-          <RsvpForm token={guest.token} />
-        </div>
-      </Medallion>
+        </Medallion>
+      )}
 
       {guest.facts && (
         <Medallion>
           <div className="flex flex-col items-center gap-4">
-            <p className={label}>Интересные факты</p>
+            <p className={label}>
+              {guest.rsvp === false ? "Наш уговор" : "Интересные факты"}
+            </p>
             <p className="max-w-[18rem] text-pretty text-sm leading-relaxed text-ink/85">
               {guest.facts}
             </p>
