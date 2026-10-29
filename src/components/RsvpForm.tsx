@@ -97,7 +97,11 @@ export function RsvpForm({ token }: { token: string }) {
   );
 }
 
-const drinkOptions = ["Пиво", "Вино", "Сок"];
+const drinkOptions = [
+  { name: "Пиво", field: "beerDetail", hint: "Какое пиво предпочитаете? Светлое, тёмное, марка…" },
+  { name: "Вино", field: "wineDetail", hint: "Какое вино? Красное, белое, сухое, полусладкое…" },
+  { name: "Сок", field: "juiceDetail", hint: "Какой сок предпочитаете?" },
+];
 
 function PreferencesForm({ token }: { token: string }) {
   const [state, action, pending] = useActionState<FormState, FormData>(
@@ -132,17 +136,17 @@ function PreferencesForm({ token }: { token: string }) {
           1. Какие у вас предпочтения по напиткам?
         </legend>
         <div className="flex flex-wrap justify-center gap-2">
-          {drinkOptions.map((d) => (
-            <label key={d} className={chip(selected.includes(d))}>
+          {drinkOptions.map(({ name }) => (
+            <label key={name} className={chip(selected.includes(name))}>
               <input
                 type="checkbox"
                 name="drinks"
-                value={d}
-                checked={selected.includes(d)}
-                onChange={() => toggle(d)}
+                value={name}
+                checked={selected.includes(name)}
+                onChange={() => toggle(name)}
                 className="sr-only"
               />
-              {d}
+              {name}
             </label>
           ))}
           <label className={chip(other)}>
@@ -157,14 +161,17 @@ function PreferencesForm({ token }: { token: string }) {
             Свой вариант
           </label>
         </div>
-        {selected.includes("Сок") && (
-          <input
-            name="juiceFlavor"
-            required
-            placeholder="Какой сок предпочитаете?"
-            className={inputClass}
-          />
-        )}
+        {drinkOptions
+          .filter(({ name }) => selected.includes(name))
+          .map(({ field, hint }) => (
+            <input
+              key={field}
+              name={field}
+              required
+              placeholder={hint}
+              className={inputClass}
+            />
+          ))}
         {other && (
           <input
             name="drinksOther"

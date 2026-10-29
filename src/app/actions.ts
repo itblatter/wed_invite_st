@@ -59,13 +59,20 @@ export async function submitPreferences(
 
   const drinks = formData.getAll("drinks").map(String);
   const drinksOther = String(formData.get("drinksOther") ?? "").trim();
-  const juiceFlavor = String(formData.get("juiceFlavor") ?? "").trim();
   const allergies = String(formData.get("allergies") ?? "").trim();
 
+  const detailField: Record<string, string> = {
+    Пиво: "beerDetail",
+    Вино: "wineDetail",
+    Сок: "juiceDetail",
+  };
+  const withDetail = (d: string) => {
+    const detail = String(formData.get(detailField[d] ?? "") ?? "").trim();
+    return detail ? `${d} (${detail})` : d;
+  };
+
   const drinkList = [
-    ...drinks
-      .filter((d) => d !== "other")
-      .map((d) => (d === "Сок" && juiceFlavor ? `Сок (${juiceFlavor})` : d)),
+    ...drinks.filter((d) => d !== "other").map(withDetail),
     drinksOther,
   ].filter(Boolean);
   if (drinkList.length === 0) {
