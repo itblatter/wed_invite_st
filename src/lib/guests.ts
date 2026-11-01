@@ -3,6 +3,8 @@ import guestsData from "@/data/guests.json";
 export type Guest = {
   token: string;
   names: string[];
+  /** Дополнительные варианты имён для поиска («Катя» → Екатерина). Не отображаются */
+  aliases?: string[];
   greeting: string;
   text: string;
   facts: string;
@@ -42,7 +44,9 @@ export function findGuest(input: string): LookupResult {
   const scored = guests
     .map((guest) => ({
       guest,
-      score: guest.names.filter((n) => words.includes(normalizeName(n))).length,
+      score: [...guest.names, ...(guest.aliases ?? [])].filter((n) =>
+        words.includes(normalizeName(n)),
+      ).length,
     }))
     .filter((s) => s.score > 0)
     .sort((a, b) => b.score - a.score);
